@@ -6,9 +6,7 @@ import {
   ChevronRight,
   Droplet,
   HeartPulse,
-  Home,
   LifeBuoy,
-  PhoneCall,
   ShieldAlert,
   Wind,
   X,
@@ -16,6 +14,7 @@ import {
 import { createElement, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
+import Navbar from "../components/Navbar";
 import { emergencyData, references } from "../data/emergencyContent";
 import FooterCredit from "../components/FooterCredit";
 import "../styles/emergency-guide.css";
@@ -327,6 +326,7 @@ function EmergencyGuide() {
   if (!emergency) {
     return (
       <div className="emergency-guide">
+        <Navbar />
         <main className="eg-not-found">
           <ShieldAlert size={35} />
           <h1>Emergency guide unavailable</h1>
@@ -342,16 +342,7 @@ function EmergencyGuide() {
 
   return (
     <div className="emergency-guide">
-      <header className="eg-topbar">
-        <Link to="/emergencies" className="eg-brand"><span className="eg-brand__mark"><Activity size={20} /></span><span>MAHSA INTERNATIONAL COLLEGE<small>DENTAL EMERGENCY QUICK REFERENCE</small></span></Link>
-        <nav className="eg-topbar__actions" aria-label="Quick actions">
-          <a className="eg-emergency-call" href="tel:999" aria-label="Call emergency services at 999">
-            <PhoneCall size={17} aria-hidden="true" />
-            <span>Call 999</span>
-          </a>
-          <Link to="/" className="eg-home"><Home size={17} /> Home</Link>
-        </nav>
-      </header>
+      <Navbar />
 
       <main className="eg-main">
         <nav className="eg-breadcrumb" aria-label="Breadcrumb">

@@ -15,32 +15,34 @@
 .editorial-brand {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
   color: var(--page-ink);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .1em;
   line-height: 1.3;
   text-decoration: none;
 }
 
-.editorial-brand__mark {
+.editorial-brand__identity {
   display: grid;
-  width: 38px;
-  height: 38px;
-  flex: 0 0 38px;
-  place-items: center;
-  border: 1px solid #c8d6cf;
-  color: var(--page-teal);
+  justify-items: start;
+  gap: 2px;
+}
+
+.editorial-brand__logo {
+  display: block;
+  width: min(165px, 34vw);
+  height: auto;
 }
 
 .editorial-brand small {
   display: block;
-  margin-top: 4px;
+  margin: 2px 0 0 2px;
+  border-radius: 3px;
+  padding: 3px 6px;
+  background: rgb(255 249 233 / 62%);
   color: var(--page-muted);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: .11em;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
 }
 
 .home-topbar,
@@ -349,6 +351,17 @@
   color: var(--page-teal);
 }
 
+.home-support__icon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  place-items: center;
+  border: 1px solid #d4b3a9;
+  background: #fff9f3;
+  color: var(--page-teal);
+}
+
 .home-support > div p {
   display: grid;
   gap: 4px;
@@ -595,6 +608,7 @@
   }
 
   .home-support {
+    grid-template-columns: 1fr;
     gap: 24px;
     padding-right: 3vw;
     padding-left: 3vw;
@@ -639,21 +653,6 @@
     padding-left: 17px;
   }
 
-  .editorial-brand {
-    gap: 9px;
-    font-size: 9px;
-  }
-
-  .editorial-brand__mark {
-    width: 34px;
-    height: 34px;
-    flex-basis: 34px;
-  }
-
-  .editorial-brand small {
-    font-size: 8px;
-  }
-
   .editorial-home-link {
     min-height: 36px;
     padding: 0 9px;
@@ -663,19 +662,11 @@
   .home-topbar .editorial-brand {
     min-width: 0;
     max-width: 46vw;
-    gap: 7px;
-    font-size: 8px;
-    letter-spacing: .06em;
-    line-height: 1.2;
   }
 
   .editorial-topbar .editorial-brand {
     min-width: 0;
     max-width: 42vw;
-    gap: 7px;
-    font-size: 8px;
-    letter-spacing: .06em;
-    line-height: 1.2;
   }
 
   .home-topbar .editorial-brand > span:last-child {
@@ -687,16 +678,12 @@
   }
 
   .home-topbar .editorial-brand small {
-    margin-top: 3px;
     font-size: 6.5px;
-    letter-spacing: .06em;
     line-height: 1.2;
   }
 
   .editorial-topbar .editorial-brand small {
-    margin-top: 3px;
     font-size: 6.5px;
-    letter-spacing: .06em;
     line-height: 1.2;
   }
 
@@ -705,11 +692,27 @@
     gap: 6px;
   }
 
+  .editorial-topbar .home-topbar__actions {
+    gap: 6px;
+  }
+
   .home-emergency-call {
-    min-height: 36px;
+    min-height: 32px;
     gap: 5px;
-    padding: 0 9px;
-    font-size: 12px;
+    padding: 0 7px;
+    font-size: 11px;
+  }
+
+  .editorial-topbar .editorial-home-link {
+    min-height: 32px;
+    gap: 5px;
+    padding: 0 7px;
+    font-size: 11px;
+  }
+
+  .home-topbar__actions svg {
+    width: 14px;
+    height: 14px;
   }
 
   .home-main,
@@ -805,36 +808,18 @@
 
   .home-topbar .editorial-brand {
     max-width: 37vw;
-    gap: 6px;
-    font-size: 7.5px;
-  }
-
-  .home-topbar .editorial-brand__mark {
-    width: 30px;
-    height: 30px;
-    flex-basis: 30px;
   }
 
   .editorial-topbar .editorial-brand {
     max-width: 37vw;
-    gap: 6px;
-    font-size: 7.5px;
-  }
-
-  .editorial-topbar .editorial-brand__mark {
-    width: 30px;
-    height: 30px;
-    flex-basis: 30px;
   }
 
   .home-topbar .editorial-brand small {
     font-size: 6px;
-    letter-spacing: .045em;
   }
 
   .editorial-topbar .editorial-brand small {
     font-size: 6px;
-    letter-spacing: .045em;
   }
 
   .home-topbar__actions {
@@ -848,9 +833,18 @@
   .home-emergency-call,
   .home-topbar .editorial-home-link {
     gap: 4px;
-    padding-right: 7px;
-    padding-left: 7px;
-    font-size: 11px;
+    min-height: 30px;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 10px;
+  }
+
+  .editorial-topbar .editorial-home-link {
+    gap: 4px;
+    min-height: 30px;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 10px;
   }
 
   .home-emergency-call__prefix {
@@ -883,35 +877,39 @@
   background: #fff;
 }
 
-.home-page .home-topbar,
-.editorial-page .editorial-topbar {
+.home-page .editorial-topbar,
+.editorial-page .editorial-topbar,
+.emergency-guide .editorial-topbar,
+.not-found-page .editorial-topbar {
   border-bottom-color: #d5ad64;
   background: #ffdd9c;
   box-shadow: 0 3px 12px rgb(69 50 18 / 10%);
 }
 
-.home-page .home-topbar .editorial-brand,
+.home-page .editorial-topbar .editorial-brand,
 .editorial-page .editorial-topbar .editorial-brand,
-.home-page .home-topbar .editorial-brand small,
-.editorial-page .editorial-topbar .editorial-brand small {
+.emergency-guide .editorial-topbar .editorial-brand,
+.not-found-page .editorial-topbar .editorial-brand,
+.home-page .editorial-topbar .editorial-brand small,
+.editorial-page .editorial-topbar .editorial-brand small,
+.emergency-guide .editorial-topbar .editorial-brand small,
+.not-found-page .editorial-topbar .editorial-brand small {
   color: #352a18;
 }
 
-.home-page .home-topbar .editorial-brand__mark,
-.editorial-page .editorial-topbar .editorial-brand__mark {
-  border-color: rgb(75 56 23 / 34%);
-  color: #664919;
-}
-
-.home-page .home-topbar .editorial-home-link,
-.editorial-page .editorial-topbar .editorial-home-link {
+.home-page .editorial-topbar .editorial-home-link,
+.editorial-page .editorial-topbar .editorial-home-link,
+.emergency-guide .editorial-topbar .editorial-home-link,
+.not-found-page .editorial-topbar .editorial-home-link {
   border-color: rgb(75 56 23 / 32%);
   background: rgb(255 249 233 / 56%);
   color: #352a18;
 }
 
-.home-page .home-topbar .editorial-home-link:hover,
-.editorial-page .editorial-topbar .editorial-home-link:hover {
+.home-page .editorial-topbar .editorial-home-link:hover,
+.editorial-page .editorial-topbar .editorial-home-link:hover,
+.emergency-guide .editorial-topbar .editorial-home-link:hover,
+.not-found-page .editorial-topbar .editorial-home-link:hover {
   border-color: #76541c;
   background: #fff0c9;
 }

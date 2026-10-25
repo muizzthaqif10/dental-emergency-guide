@@ -1,4 +1,4 @@
-import { Activity, BookOpenCheck } from "lucide-react";
+import { Activity, AlertCircle, BookOpenCheck } from "lucide-react";
 
 import Navbar from "../components/Navbar";
 import EmergencyButton from "../components/EmergencyButton";
@@ -31,8 +31,14 @@ function Home() {
         </section>
 
         <section className="home-support">
-          <div><BookOpenCheck size={19} /><p><strong>Structured response</strong><span>Recognition, first actions, and decision pathways in one place.</span></p></div>
-          <p className="editorial-disclaimer"><strong>Disclaimer</strong> This guide is intended for educational and quick reference purposes only and does not replace professional clinical judgement.</p>
+          <div>
+            <span className="home-support__icon"><BookOpenCheck size={19} aria-hidden="true" /></span>
+            <p><strong>Structured response</strong><span>Recognition, first actions, and decision pathways in one place.</span></p>
+          </div>
+          <div>
+            <span className="home-support__icon"><AlertCircle size={19} aria-hidden="true" /></span>
+            <p><strong>Disclaimer</strong><span>This guide is intended for educational and quick reference purposes only and does not replace professional clinical judgement.</span></p>
+          </div>
         </section>
       </main>
       <FooterCredit />

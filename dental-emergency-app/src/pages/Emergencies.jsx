@@ -1,8 +1,9 @@
-import { ArrowLeft, ArrowRight, Activity, PhoneCall } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import EmergencyCard from "../components/EmergencyCard";
 import FooterCredit from "../components/FooterCredit";
+import Navbar from "../components/Navbar";
 import { emergencies } from "../data/emergencies";
 import { emergencyData } from "../data/emergencyContent";
 import "../styles/editorial-pages.css";
@@ -12,21 +13,7 @@ function Emergencies() {
 
   return (
     <div className="editorial-page">
-      <header className="editorial-topbar">
-        <Link className="editorial-brand" to="/">
-          <span className="editorial-brand__mark"><Activity size={19} /></span>
-          <span>MAHSA INTERNATIONAL COLLEGE<small>DENTAL EMERGENCY QUICK REFERENCE</small></span>
-        </Link>
-        <nav className="home-topbar__actions" aria-label="Quick actions">
-          <a className="home-emergency-call" href="tel:999" aria-label="Call emergency services at 999">
-            <PhoneCall size={16} aria-hidden="true" />
-            <span><span className="home-emergency-call__prefix">Call </span>999</span>
-          </a>
-          <button type="button" className="editorial-home-link" onClick={() => navigate("/")}>
-            <ArrowLeft size={16} /> Home
-          </button>
-        </nav>
-      </header>
+      <Navbar />
 
       <main className="emergency-index">
         <div className="emergency-index__intro">
