@@ -1,21 +1,16 @@
 function VideoContainer() {
   return (
-    <div
-      className="
-      w-full
-      max-w-5xl
-      overflow-hidden
-      rounded-3xl
-      bg-slate-900
-      shadow-xl
-      "
-    >
+    <div className="home-video">
+      <div className="home-video__placeholder" role="img" aria-label="image letak sini: Emergency overview">
+        <span>image letak sini</span>
+        <small>Emergency overview</small>
+      </div>
       <video
         autoPlay
         muted
         loop
         playsInline
-        className="h-[500px] w-full object-cover"
+        className="home-video__player"
       >
         <source
           src="/videos/homepage-bg.mp4"

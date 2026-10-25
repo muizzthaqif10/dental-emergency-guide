@@ -1,15 +1,14 @@
+import { Activity } from "lucide-react";
+import { Link } from "react-router-dom";
+
 function Navbar() {
   return (
-    <header className="py-6 text-center">
-
-      <h1 className="text-3xl font-bold text-sky-700">
-        Dental Emergency Learning
-      </h1>
-
-      <p className="mt-2 text-slate-600">
-        Clinical Emergency Response Guide
-      </p>
-
+    <header className="home-topbar">
+      <Link to="/" className="editorial-brand">
+        <span className="editorial-brand__mark"><Activity size={19} /></span>
+        <span>MAHSA INTERNATIONAL COLLEGE<small>DENTAL EMERGENCY QUICK REFERENCE</small></span>
+      </Link>
+      <Link to="/emergencies" className="editorial-home-link">Browse guides</Link>
     </header>
   );
 }
