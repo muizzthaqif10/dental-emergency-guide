@@ -1,9 +1,17 @@
+import anaphylaxisImage from "../assets/anaphylaxis.jpeg";
+import asthmaAttacksImage from "../assets/asthma_attacks.jpeg";
+import cardiacArrestImage from "../assets/cardiac_arrest.jpeg";
+import epilepsyImage from "../assets/epilepsy.jpeg";
+import hypoglycemiaImage from "../assets/hypoglycemia.jpeg";
+import othersImage from "../assets/others.jpg";
+import vasovagalSyncopeImage from "../assets/vasovagal_syncope.jpeg";
+
 export const emergencyData = [
   {
     id: "vasovagal-syncope",
     title: "Vasovagal Syncope",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=80",
-    imageAlt: "Medical training photograph accompanying the vasovagal syncope guide.",
+    image: vasovagalSyncopeImage,
+    imageAlt: "Medical illustration of the body's organs and circulatory system.",
     introduction: "A common fainting episode caused by a transient drop in cerebral blood flow, often preceded by dizziness, pallor, sweating and nausea.",
     sections: [
       {
@@ -46,7 +54,7 @@ export const emergencyData = [
           "1. Stop treatment and call for help.",
           "2. Position: Place the patient supine with legs elevated.",
           "3. Airway: Perform a head tilt–chin lift and clear the airway.",
-          "4. Breathing: Look, listen and feel. If breathing is absent, the slides indicate rescue breathing.",
+          "4. Breathing: Look, listen and feel. If breathing is absent, provide rescue breathing.",
           "5. Circulation: Check the carotid pulse."
         ]
       },
@@ -67,8 +75,8 @@ export const emergencyData = [
   {
     id: "anaphylaxis",
     title: "Anaphylaxis",
-    image: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80",
-    imageAlt: "Medical training photograph accompanying the anaphylaxis guide.",
+    image: anaphylaxisImage,
+    imageAlt: "Skin rash associated with an allergic reaction.",
     introduction: "A rapidly progressive allergic reaction involving skin, respiratory and cardiovascular effects that can become life-threatening within minutes.",
     sections: [
       {
@@ -94,7 +102,7 @@ export const emergencyData = [
         question: "Decision: Is there airway or breathing compromise?",
         yesTitle: "If airway or breathing compromise is present",
         yesItems: [
-          "1. Immediate key step: The slides specify adrenaline (epinephrine) 0.5 mg IM (1:1000) as the first and life-saving drug.",
+          "1. Immediate key step: Adrenaline (epinephrine) 0.5 mg IM (1:1000) is the first and life-saving drug.",
           "2. Airway: Maintain the airway and prepare for possible airway obstruction due to laryngeal edema.",
           "3. Breathing: Give high-flow oxygen and assist ventilation if needed.",
           "4. Circulation: Monitor pulse and blood pressure.",
@@ -148,8 +156,8 @@ export const emergencyData = [
   {
     id: "hypoglycemia",
     title: "Hypoglycemia",
-    image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=900&q=80",
-    imageAlt: "Medical training photograph accompanying the hypoglycemia guide.",
+    image: hypoglycemiaImage,
+    imageAlt: "Medical illustration highlighting the pancreas in the human body.",
     introduction: "A drop in blood sugar that may cause sweating, tremor, confusion, tachycardia and reduced consciousness.",
     sections: [
       {
@@ -206,7 +214,7 @@ export const emergencyData = [
         yesTitle: "Pulse present — management",
         yesItems: [
           "Do not give oral glucose because of the risk of aspiration.",
-          "The slides specify IV glucose (e.g., 20–50% dextrose) or IM glucagon if IV access is unavailable.",
+          "IV glucose (e.g., 20–50% dextrose) or IM glucagon if IV access is unavailable.",
           "Monitor vital signs; recovery is expected."
         ],
         noTitle: "Pulse absent",
@@ -219,10 +227,8 @@ export const emergencyData = [
   {
     id: "cardiac-arrest",
     title: "Cardiac Arrest",
-    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/CPR_Training_Chiasma.jpg/960px-CPR_Training_Chiasma.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    imageAlt: "CPR training session with a medical-training mannequin.",
-    imageCredit: "CPR Training Chiasma by Adhitya2048, CC BY-SA 4.0",
-    imageSourceUrl: "https://commons.wikimedia.org/wiki/File:CPR_Training_Chiasma.jpg",
+    image: cardiacArrestImage,
+    imageAlt: "Medical illustration of the heart and circulatory system.",
     introduction: "A sudden cessation of effective circulation and ventilation, requiring immediate CPR, airway support and emergency response.",
     sections: [
       {
@@ -298,10 +304,8 @@ export const emergencyData = [
   {
     id: "asthma-attacks",
     title: "Asthma Attacks",
-    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/An_Asthma_patient_taking_medication_using_an_inhaler.png/960px-An_Asthma_patient_taking_medication_using_an_inhaler.png",
-    imageAlt: "Illustration of an asthma patient using an inhaler with a comparison of normal and asthmatic airways.",
-    imageCredit: "An Asthma patient taking medication using an inhaler by myUpchar, CC BY-SA 4.0",
-    imageSourceUrl: "https://commons.wikimedia.org/wiki/File:An_Asthma_patient_taking_medication_using_an_inhaler.png",
+    image: asthmaAttacksImage,
+    imageAlt: "Medical illustration of the lungs and airways.",
     introduction: "A bronchospasm event characterised by dyspnoea, wheeze, chest tightness and anxiety that may rapidly worsen without treatment.",
     sections: [
       {
@@ -327,12 +331,12 @@ export const emergencyData = [
         question: "Decision: Is the patient breathing adequately?",
         yesTitle: "If the patient is breathing adequately",
         yesItems: [
-          "1. Give bronchodilator — key step: The slides specify a salbutamol inhaler, two puffs.",
+          "1. Give bronchodilator — key step: Give two puffs from a salbutamol inhaler.",
           "2. Give oxygen if available.",
           "3. Reassess after a short interval.",
           "- If improved, continue monitoring.",
           "4. If not improved: Repeat the inhaler.",
-          "5. If there is still no response: The slides specify adrenaline 0.5 ml (1:1000) IM/SC.",
+          "5. If there is still no response: Give adrenaline 0.5 ml (1:1000) IM/SC.",
           "6. If symptoms persist: Call emergency medical services."
         ],
         noTitle: "If the patient is not breathing adequately",
@@ -366,7 +370,7 @@ export const emergencyData = [
         question: "Decision point:",
         yesTitle: "Pulse present",
         yesItems: [
-          "The slides specify adrenaline 0.5 ml (1:1000) IM/SC.",
+          "Give adrenaline 0.5 ml (1:1000) IM/SC.",
           "Repeat bronchodilator if possible.",
           "Monitor continuously and prepare for transfer."
         ],
@@ -380,8 +384,8 @@ export const emergencyData = [
   {
     id: "epilepsy",
     title: "Epilepsy",
-    image: "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=900&q=80",
-    imageAlt: "Medical training photograph accompanying the epilepsy guide.",
+    image: epilepsyImage,
+    imageAlt: "Medical illustration of the brain and its blood vessels.",
     introduction: "A seizure may present as tonic–clonic movements and requires immediate protection, monitoring and escalation if prolonged or recurrent.",
     sections: [
       {
@@ -456,8 +460,8 @@ export const emergencyData = [
   {
     id: "others",
     title: "Others",
-    image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=900&q=80",
-    imageAlt: "Medical training photograph accompanying the general emergency guide.",
+    image: othersImage,
+    imageAlt: "Medical illustration of an electrocardiogram heartbeat trace.",
     introduction: "A general emergency pathway for unlisted situations, with conscious and unconscious patient management based on ABC assessment.",
     sections: [
       {

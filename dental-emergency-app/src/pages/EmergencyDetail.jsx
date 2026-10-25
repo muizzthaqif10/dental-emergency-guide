@@ -314,7 +314,7 @@ function EmergencyDetail() {
                 <p className="text-sm font-black uppercase tracking-[0.2em] text-amber-800">Important</p>
               </div>
               <p className="mt-2 text-sm leading-6 text-amber-900">
-                This content has been transcribed and organised from the presentation and should not be treated as independently medically validated. Medication instructions, doses and emergency-response steps require review by a qualified clinician before publication.
+                This educational guide has not been independently medically validated. Medication instructions, doses, routes and emergency-response steps should be reviewed by a qualified clinician before publication.
               </p>
             </div>
 

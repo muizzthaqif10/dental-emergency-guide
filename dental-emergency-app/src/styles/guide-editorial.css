@@ -653,6 +653,50 @@
   color: var(--eg-navy);
 }
 
+.emergency-guide .eg-early-signs {
+  border-color: #e8c8a8;
+  border-left: 4px solid #bd6a35;
+  background: linear-gradient(120deg, #fff8ef, #fffdf9);
+}
+
+.emergency-guide .eg-early-signs__label {
+  color: #8b4b20;
+}
+
+.emergency-guide .eg-early-signs .eg-sign-card {
+  transition: background-color .18s ease, border-color .18s ease;
+}
+
+.emergency-guide .eg-early-signs .eg-sign-card:nth-child(5n + 1) .eg-sign-card__icon {
+  background: #fce8d8;
+  color: #a84f1e;
+}
+
+.emergency-guide .eg-early-signs .eg-sign-card:nth-child(5n + 2) .eg-sign-card__icon {
+  background: #e7f1e7;
+  color: #3b7251;
+}
+
+.emergency-guide .eg-early-signs .eg-sign-card:nth-child(5n + 3) .eg-sign-card__icon {
+  background: #e9ebfa;
+  color: #4e5ca0;
+}
+
+.emergency-guide .eg-early-signs .eg-sign-card:nth-child(5n + 4) .eg-sign-card__icon {
+  background: #f9e5e7;
+  color: #a23f4a;
+}
+
+.emergency-guide .eg-early-signs .eg-sign-card:nth-child(5n) .eg-sign-card__icon {
+  background: #e5eef7;
+  color: #37678e;
+}
+
+.emergency-guide .eg-early-signs .eg-sign-card:hover {
+  border-color: #dfb991;
+  background: #fff;
+}
+
 .eg-modal__done {
   border-color: var(--eg-teal);
   background: var(--eg-teal);

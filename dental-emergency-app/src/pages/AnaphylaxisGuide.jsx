@@ -38,7 +38,7 @@ const emergency = {
   ],
   question: "Decision: Is there airway or breathing compromise?",
   compromised: [
-    "1. Immediate key step: The slides specify adrenaline (epinephrine) 0.5 mg IM (1:1000) as the first and life-saving drug.",
+    "1. Immediate key step: Adrenaline (epinephrine) 0.5 mg IM (1:1000) is the first and life-saving drug.",
     "2. Airway: Maintain the airway and prepare for possible airway obstruction due to laryngeal edema.",
     "3. Breathing: Give high-flow oxygen and assist ventilation if needed.",
     "4. Circulation: Monitor pulse and blood pressure.",

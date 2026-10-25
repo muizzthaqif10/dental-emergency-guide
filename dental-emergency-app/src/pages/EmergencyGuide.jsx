@@ -5,9 +5,11 @@ import {
   Brain,
   ChevronRight,
   Droplet,
+  Eye,
   HeartPulse,
   LifeBuoy,
   ShieldAlert,
+  Utensils,
   Wind,
   X,
 } from "lucide-react";
@@ -29,9 +31,16 @@ const signIcons = {
 
 const earlySignIconsByEmergency = {
   "vasovagal-syncope": Activity,
-  hypoglycemia: Droplet,
   "asthma-attacks": Wind,
 };
+
+const hypoglycemiaSignIcons = [
+  { pattern: /sweating|tremor/i, icon: Droplet },
+  { pattern: /hunger/i, icon: Utensils },
+  { pattern: /confusion|irritability/i, icon: Brain },
+  { pattern: /tachycardia/i, icon: HeartPulse },
+  { pattern: /consciousness/i, icon: Eye },
+];
 
 const sectionIcons = {
   "Recognising the emergency": ShieldAlert,
@@ -43,7 +52,15 @@ const sectionIcons = {
 };
 
 const reviewNotice =
-  "The text above is transcribed and organised from your PowerPoint, not independently medically validated. Some medication instructions, doses, routes and emergency-response steps require review by a qualified clinician before publication. In particular, the adrenaline instructions for asthma and anaphylaxis should be checked against current clinical guidelines.";
+  "This educational guide has not been independently medically validated. Medication instructions, doses, routes and emergency-response steps should be reviewed by a qualified clinician before publication. In particular, verify the adrenaline guidance for asthma and anaphylaxis against current clinical guidelines.";
+
+function getEarlySignIcon(emergencyId, item) {
+  if (emergencyId === "hypoglycemia") {
+    return hypoglycemiaSignIcons.find(({ pattern }) => pattern.test(item))?.icon || Activity;
+  }
+
+  return earlySignIconsByEmergency[emergencyId] || Activity;
+}
 
 function getSectionId(value, index) {
   return `${value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}-${index}`;
@@ -257,7 +274,7 @@ function ContentSection({ section, index, earlySignsLabel, emergencyId }) {
         {section.items.map((item) => {
           const [label, ...details] = item.split(":");
           const hasCategory = /^(Skin|Respiratory|Cardiovascular|Gastrointestinal)/.test(label);
-          const Icon = signIcons[label] || earlySignIconsByEmergency[emergencyId] || Activity;
+          const Icon = signIcons[label] || getEarlySignIcon(emergencyId, item);
           return (
             <article className="eg-sign-card" key={item}>
               <span className="eg-sign-card__icon"><Icon size={19} aria-hidden="true" /></span>
@@ -364,17 +381,19 @@ function EmergencyGuide() {
               alt={emergency.imageAlt}
               loading="eager"
             />
-            <figcaption className="eg-hero__photo-credit">
-              {emergency.imageCredit ? (
-                <a href={emergency.imageSourceUrl} target="_blank" rel="noreferrer">
-                  {emergency.imageCredit}
-                </a>
-              ) : (
-                <a href="https://unsplash.com/license" target="_blank" rel="noreferrer">
-                  Image source: Unsplash
-                </a>
-              )}
-            </figcaption>
+            {(emergency.imageCredit || emergency.image.startsWith("https://images.unsplash.com/")) && (
+              <figcaption className="eg-hero__photo-credit">
+                {emergency.imageCredit ? (
+                  <a href={emergency.imageSourceUrl} target="_blank" rel="noreferrer">
+                    {emergency.imageCredit}
+                  </a>
+                ) : (
+                  <a href="https://unsplash.com/license" target="_blank" rel="noreferrer">
+                    Image source: Unsplash
+                  </a>
+                )}
+              </figcaption>
+            )}
           </figure>
         </header>
 

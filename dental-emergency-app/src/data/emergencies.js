@@ -305,7 +305,7 @@ export const emergencies = [
   {
     id: "others",
     title: "Others",
-    image: "/images/vasovagal.jpg",
+    image: "/images/others.jpg",
     category: "General scenario",
     summary: "A general emergency pathway for unlisted situations, with conscious and unconscious patient management based on ABC assessment.",
     content: [
