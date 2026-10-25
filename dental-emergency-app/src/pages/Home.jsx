@@ -1,8 +1,9 @@
-import { ArrowRight, Activity, BookOpenCheck } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Activity, BookOpenCheck } from "lucide-react";
 
 import Navbar from "../components/Navbar";
+import EmergencyButton from "../components/EmergencyButton";
 import VideoContainer from "../components/VideoContainer";
+import FooterCredit from "../components/FooterCredit";
 import "../styles/editorial-pages.css";
 
 function Home() {
@@ -13,13 +14,13 @@ function Home() {
         <section className="home-hero">
           <div className="home-hero__copy">
             <p className="editorial-kicker">MAHSA INTERNATIONAL COLLEGE <span>/</span> CLINICAL LEARNING</p>
-            <h1>Calm, clear care<br />in an <em>emergency.</em></h1>
+            <h1>Emergency?<br /><em>Tap Here.</em></h1>
             <p className="home-hero__dek">
               A practical dental emergency quick reference for recognising an emergency and finding the next response pathway.
             </p>
-            <Link className="home-hero__action" to="/emergencies">
-              Explore emergency guides <ArrowRight size={17} />
-            </Link>
+            <div className="home-hero__actions">
+              <EmergencyButton />
+            </div>
             <p className="home-hero__note"><Activity size={15} /> Clinical reference · Educational use</p>
           </div>
           <div className="home-hero__media">
@@ -34,6 +35,7 @@ function Home() {
           <p className="editorial-disclaimer"><strong>Disclaimer</strong> This guide is intended for educational and quick reference purposes only and does not replace professional clinical judgement.</p>
         </section>
       </main>
+      <FooterCredit />
     </div>
   );
 }

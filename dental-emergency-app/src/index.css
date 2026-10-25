@@ -18,9 +18,34 @@ html {
 
 body {
   margin: 0;
-  min-width: 320px;
+  min-width: 0;
   min-height: 100vh;
   background: #f5f2ec;
+}
+
+.home-page,
+.editorial-page,
+.emergency-guide,
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-main,
+.emergency-index,
+.eg-main,
+.not-found-page main {
+  flex: 1;
+}
+
+.page-credit {
+  margin-top: auto;
+  border-top: 1px solid rgb(105 115 111 / 14%);
+  padding: 10px 16px;
+  color: #87908c;
+  font-size: 10px;
+  letter-spacing: .035em;
+  text-align: center;
 }
 
 * {

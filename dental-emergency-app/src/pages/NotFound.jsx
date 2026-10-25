@@ -1,24 +1,27 @@
-import { useNavigate } from "react-router-dom";
+import { ArrowLeft, BookOpen, ShieldAlert } from "lucide-react";
+import { Link } from "react-router-dom";
+
+import FooterCredit from "../components/FooterCredit";
+import Navbar from "../components/Navbar";
+import "../styles/editorial-pages.css";
 
 function NotFound() {
-  const navigate = useNavigate();
-
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 px-6">
-      <div className="max-w-xl rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-lg">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">Page not found</p>
-        <h1 className="mt-3 text-4xl font-black text-slate-900">This emergency guide is unavailable</h1>
-        <p className="mt-4 text-slate-600">
+    <div className="not-found-page">
+      <Navbar />
+      <main>
+        <span className="not-found-page__mark"><ShieldAlert size={25} aria-hidden="true" /></span>
+        <p className="editorial-kicker">PAGE NOT FOUND</p>
+        <h1>This emergency guide is unavailable</h1>
+        <p>
           The page you requested does not exist. Please return to the emergency list and choose a relevant case.
         </p>
-        <button
-          type="button"
-          onClick={() => navigate("/")}
-          className="mt-8 rounded-full bg-sky-600 px-6 py-3 font-semibold text-white transition hover:bg-sky-700"
-        >
-          Back home
-        </button>
-      </div>
+        <div className="not-found-page__actions">
+          <Link to="/"><ArrowLeft size={16} aria-hidden="true" /> Back home</Link>
+          <Link to="/emergencies"><BookOpen size={16} aria-hidden="true" /> View emergency guides</Link>
+        </div>
+      </main>
+      <FooterCredit />
     </div>
   );
 }

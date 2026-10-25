@@ -3,6 +3,7 @@ export const emergencyData = [
     id: "vasovagal-syncope",
     title: "Vasovagal Syncope",
     image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Medical training photograph accompanying the vasovagal syncope guide.",
     introduction: "A common fainting episode caused by a transient drop in cerebral blood flow, often preceded by dizziness, pallor, sweating and nausea.",
     sections: [
       {
@@ -67,6 +68,7 @@ export const emergencyData = [
     id: "anaphylaxis",
     title: "Anaphylaxis",
     image: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Medical training photograph accompanying the anaphylaxis guide.",
     introduction: "A rapidly progressive allergic reaction involving skin, respiratory and cardiovascular effects that can become life-threatening within minutes.",
     sections: [
       {
@@ -147,6 +149,7 @@ export const emergencyData = [
     id: "hypoglycemia",
     title: "Hypoglycemia",
     image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Medical training photograph accompanying the hypoglycemia guide.",
     introduction: "A drop in blood sugar that may cause sweating, tremor, confusion, tachycardia and reduced consciousness.",
     sections: [
       {
@@ -216,7 +219,10 @@ export const emergencyData = [
   {
     id: "cardiac-arrest",
     title: "Cardiac Arrest",
-    image: "https://images.unsplash.com/photo-1516549656527-3d0b3f3d1d96?auto=format&fit=crop&w=900&q=80",
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/CPR_Training_Chiasma.jpg/960px-CPR_Training_Chiasma.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    imageAlt: "CPR training session with a medical-training mannequin.",
+    imageCredit: "CPR Training Chiasma by Adhitya2048, CC BY-SA 4.0",
+    imageSourceUrl: "https://commons.wikimedia.org/wiki/File:CPR_Training_Chiasma.jpg",
     introduction: "A sudden cessation of effective circulation and ventilation, requiring immediate CPR, airway support and emergency response.",
     sections: [
       {
@@ -292,7 +298,10 @@ export const emergencyData = [
   {
     id: "asthma-attacks",
     title: "Asthma Attacks",
-    image: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80",
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/An_Asthma_patient_taking_medication_using_an_inhaler.png/960px-An_Asthma_patient_taking_medication_using_an_inhaler.png",
+    imageAlt: "Illustration of an asthma patient using an inhaler with a comparison of normal and asthmatic airways.",
+    imageCredit: "An Asthma patient taking medication using an inhaler by myUpchar, CC BY-SA 4.0",
+    imageSourceUrl: "https://commons.wikimedia.org/wiki/File:An_Asthma_patient_taking_medication_using_an_inhaler.png",
     introduction: "A bronchospasm event characterised by dyspnoea, wheeze, chest tightness and anxiety that may rapidly worsen without treatment.",
     sections: [
       {
@@ -372,6 +381,7 @@ export const emergencyData = [
     id: "epilepsy",
     title: "Epilepsy",
     image: "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Medical training photograph accompanying the epilepsy guide.",
     introduction: "A seizure may present as tonic–clonic movements and requires immediate protection, monitoring and escalation if prolonged or recurrent.",
     sections: [
       {
@@ -447,37 +457,48 @@ export const emergencyData = [
     id: "others",
     title: "Others",
     image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Medical training photograph accompanying the general emergency guide.",
     introduction: "A general emergency pathway for unlisted situations, with conscious and unconscious patient management based on ABC assessment.",
     sections: [
       {
-        kind: "decision",
+        kind: "pathways",
         question: "General emergency actions",
-        yesTitle: "If the patient is conscious",
-        yesItems: [
-          "Stop dental treatment.",
-          "Position the patient appropriately.",
-          "Reassure the patient.",
-          "Give specific medication as appropriate.",
-          "Monitor vital signs."
-        ],
-        noTitle: "If the patient is unconscious",
-        noItems: [
-          "Call for help (doctor or trained medical personnel on duty).",
-          "Call 999.",
-          "Check ABC: Airway, Breathing and Circulation.",
-          "Place the patient in the recovery position if breathing.",
-          "Start CPR if needed.",
-          "Give emergency drugs as appropriate.",
-          "Monitor continuously.",
-          "If there are no signs of life or resuscitation fails",
-          "- Continue CPR until help arrives or the patient shows signs of recovery.",
-          "- If there is no response after prolonged resuscitation:",
-          "- Follow local protocols and guidelines.",
-          "- A doctor confirms death.",
-          "- Document:",
-          "- Time of arrest.",
-          "- Time CPR started and stopped.",
-          "- Drugs given."
+        branches: [
+          {
+            title: "Conscious patient",
+            items: [
+              "Stop dental treatment.",
+              "Position the patient appropriately.",
+              "Reassure the patient.",
+              "Give specific medication as appropriate.",
+              "Monitor vital signs."
+            ]
+          },
+          {
+            title: "Unconscious patient",
+            items: [
+              "Call for help (doctor or trained medical personnel on duty).",
+              "Call 999.",
+              "Check ABC: Airway, Breathing and Circulation.",
+              "Place the patient in the recovery position if breathing.",
+              "Start CPR if needed.",
+              "Give emergency drugs as appropriate.",
+              "Monitor continuously."
+            ]
+          },
+          {
+            title: "No signs of life/resuscitation fails",
+            items: [
+              "Continue CPR until help arrives or the patient shows signs of recovery.",
+              "If there is no response after prolonged resuscitation:",
+              "- Follow local protocols and guidelines.",
+              "- A doctor confirms death.",
+              "- Document:",
+              "- Time of arrest.",
+              "- Time CPR started and stopped.",
+              "- Drugs given."
+            ]
+          }
         ]
       }
     ]

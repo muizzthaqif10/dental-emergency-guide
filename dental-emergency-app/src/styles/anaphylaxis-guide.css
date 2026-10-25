@@ -34,6 +34,26 @@
   background: #fff;
 }
 
+.an-topbar {
+  position: sticky;
+  top: 0;
+  border-bottom-color: #d5ad64;
+  background: #ffdd9c;
+  box-shadow: 0 3px 12px rgb(69 50 18 / 10%);
+}
+
+.an-brand,
+.an-brand small,
+.an-status,
+.an-home {
+  color: #352a18;
+}
+
+.an-brand__mark {
+  border-color: rgb(75 56 23 / 34%);
+  color: #664919;
+}
+
 .an-brand,
 .an-brand__mark,
 .an-topbar__right,

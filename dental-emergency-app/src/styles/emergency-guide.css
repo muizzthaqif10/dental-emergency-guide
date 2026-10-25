@@ -1534,3 +1534,182 @@
     flex: 1 1 120px;
   }
 }
+
+.emergency-guide .eg-topbar {
+  position: sticky;
+  z-index: 50;
+  top: 0;
+  border-bottom-color: #d5ad64;
+  background: #ffdd9c;
+  box-shadow: 0 3px 12px rgb(62 52 22 / 12%);
+}
+
+.emergency-guide .eg-brand,
+.emergency-guide .eg-brand small {
+  color: #3d3522;
+}
+
+.emergency-guide .eg-brand__mark {
+  border-color: rgb(75 56 23 / 34%);
+  color: #664919;
+}
+
+.emergency-guide .eg-home {
+  border-color: rgb(75 56 23 / 32%);
+  background: rgb(255 249 233 / 56%);
+  color: #352a18 !important;
+}
+
+.emergency-guide .eg-home:hover {
+  border-color: #76541c;
+  background: #fff0c9;
+}
+
+.emergency-guide .eg-section {
+  scroll-margin-top: 92px;
+}
+
+.emergency-guide .eg-decision {
+  width: 100%;
+  max-width: none;
+  margin: 42px 0 18px;
+  border: 1px solid #d6d1c1;
+  border-left: 4px solid #8f762d;
+  border-radius: 9px;
+  padding: clamp(18px, 2.5vw, 28px);
+  background: #f2f0e8;
+}
+
+.emergency-guide .eg-decision::before {
+  display: none;
+}
+
+.emergency-guide .eg-decision__choices {
+  width: min(100% - 52px, 620px);
+  margin-left: 52px;
+}
+
+.emergency-guide .eg-decision__choice {
+  min-height: 58px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 2px 5px rgb(27 44 51 / 6%);
+}
+
+.emergency-guide .eg-decision__choice > span {
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.emergency-guide .eg-decision__branches--selected {
+  width: calc(100% - 52px);
+  margin: 18px 0 0 52px;
+  border: 0;
+  padding: 0;
+}
+
+.emergency-guide .eg-decision__branches--selected .eg-branch,
+.emergency-guide .eg-decision__branches--selected .eg-branch--red {
+  border: 1px solid #c8d6ce;
+  border-top: 3px solid #36766c;
+  border-radius: 10px;
+  padding: clamp(14px, 2vw, 20px);
+  background: #f2f7f4;
+  box-shadow: 0 5px 16px rgb(28 58 48 / 7%);
+}
+
+.emergency-guide .eg-decision__branches--selected .eg-branch--red {
+  border-color: #e2c9c5;
+  border-top-color: #b64b46;
+  background: #fbf3f1;
+}
+
+.emergency-guide .eg-decision__branches--selected .eg-branch__heading {
+  align-items: center;
+  margin-bottom: 14px;
+  border-color: #d4dfd8;
+}
+
+.emergency-guide .eg-decision__branches--selected .eg-branch--red .eg-branch__heading {
+  border-color: #ead8d4;
+}
+
+.emergency-guide .eg-decision__branches--selected .eg-branch__heading > span {
+  min-width: 52px;
+  min-height: 30px;
+  border-radius: 999px;
+}
+
+.emergency-guide .eg-decision__branches--selected .eg-step-list {
+  gap: 9px;
+  margin: 0;
+}
+
+.emergency-guide .eg-decision__branches--selected .eg-step,
+.emergency-guide .eg-decision__branches--selected .eg-step--numbered {
+  min-height: 48px;
+  align-items: flex-start;
+  gap: 12px;
+  border: 1px solid #dbe5df;
+  border-radius: 8px;
+  padding: 11px 13px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgb(27 44 51 / 4%);
+}
+
+.emergency-guide .eg-decision__branches--selected .eg-branch--red .eg-step {
+  border-color: #ead8d4;
+  background: #fff;
+}
+
+.emergency-guide .eg-decision__branches--selected .eg-step--nested {
+  min-height: 40px;
+  margin-left: 28px;
+  border: 0;
+  border-left: 2px solid #b8cec2;
+  border-radius: 0;
+  padding: 8px 12px;
+  background: #f7faf8;
+  box-shadow: none;
+}
+
+.emergency-guide .eg-decision__branches--selected .eg-branch--red .eg-step--nested {
+  border-left-color: #dfb9b3;
+  background: #fff9f8;
+}
+
+.emergency-guide .eg-decision__branches--selected .eg-step__number {
+  width: 29px;
+  height: 29px;
+  flex-basis: 29px;
+  border: 0;
+  border-radius: 50%;
+  background: #36766c;
+  color: #fff;
+}
+
+.emergency-guide .eg-decision__branches--selected .eg-branch--red .eg-step__number {
+  background: #b64b46;
+}
+
+.emergency-guide .eg-decision__branches--selected .eg-step p {
+  color: #33464a;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.emergency-guide .eg-decision__branches--selected .eg-step p strong {
+  color: #203c43;
+}
+
+@media (max-width: 720px) {
+  .emergency-guide .eg-topbar {
+    min-height: 62px;
+  }
+
+  .emergency-guide .eg-decision__choices,
+  .emergency-guide .eg-decision__branches--selected {
+    width: 100%;
+    margin-left: 0;
+  }
+}

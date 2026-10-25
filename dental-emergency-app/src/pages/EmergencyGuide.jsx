@@ -4,11 +4,11 @@ import {
   ArrowRight,
   Brain,
   ChevronRight,
+  Droplet,
   HeartPulse,
   Home,
-  Image,
   LifeBuoy,
-  Pill,
+  PhoneCall,
   ShieldAlert,
   Wind,
   X,
@@ -17,24 +17,21 @@ import { createElement, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { emergencyData, references } from "../data/emergencyContent";
+import FooterCredit from "../components/FooterCredit";
 import "../styles/emergency-guide.css";
 import "../styles/guide-editorial.css";
-
-const emergencyIcons = {
-  "vasovagal-syncope": Activity,
-  anaphylaxis: ShieldAlert,
-  hypoglycemia: Pill,
-  "cardiac-arrest": HeartPulse,
-  "asthma-attacks": Wind,
-  epilepsy: Brain,
-  others: LifeBuoy,
-};
 
 const signIcons = {
   Skin: ShieldAlert,
   Respiratory: Wind,
   "Cardiovascular (CVS)": HeartPulse,
   "Gastrointestinal (GI)": Activity,
+};
+
+const earlySignIconsByEmergency = {
+  "vasovagal-syncope": Activity,
+  hypoglycemia: Droplet,
+  "asthma-attacks": Wind,
 };
 
 const sectionIcons = {
@@ -60,15 +57,6 @@ function getSectionIcon(value) {
   return sectionIcons[value] || Activity;
 }
 
-function getIllustrationLabels(content) {
-  const text = Array.isArray(content) ? content.join(" ").toLowerCase() : content.toLowerCase();
-  if (/\bcpr\b|aed|chest compression|resuscitation/.test(text)) return ["CPR"];
-  if (/position|supine|upright|recovery position/.test(text)) return ["Patient positioning"];
-  if (/airway|head tilt|chin lift/.test(text)) return ["Airway assessment"];
-  if (/oxygen|ventilation|give .*breaths/.test(text)) return ["Oxygen administration"];
-  return [];
-}
-
 function getOrderedSections(emergency) {
   const contentSections = [...emergency.sections];
   const decisionSections = contentSections.filter((section) => section.kind === "decision");
@@ -77,40 +65,13 @@ function getOrderedSections(emergency) {
   return [...remainingSections, ...decisionSections];
 }
 
-function getParentHeading(sections, index) {
-  for (let current = index - 1; current >= 0; current -= 1) {
-    if (sections[current].kind === "heading") return sections[current].value;
-  }
-  return "";
-}
-
 function isPulseBreathingDecision(section) {
   const branchHeadings = `${section.yesTitle} ${section.noTitle}`.toLowerCase();
   return /pulse present|pulse absent|breathing present|breathing absent/.test(branchHeadings)
     || /during resuscitation/i.test(section.question);
 }
 
-function ImagePlaceholder({ label }) {
-  return (
-    <div className="eg-image-placeholder" role="img" aria-label={`image letak sini${label ? `: ${label}` : ""}`}>
-      <Image size={22} strokeWidth={1.6} aria-hidden="true" />
-      <span>image letak sini</span>
-      {label && <small>{label}</small>}
-    </div>
-  );
-}
-
-function IllustrationPlaceholders({ labels }) {
-  if (!labels.length) return null;
-
-  return (
-    <div className="eg-image-placeholder-list">
-      {labels.map((label) => <ImagePlaceholder label={label} key={label} />)}
-    </div>
-  );
-}
-
-function StepList({ items, ordered = false, illustrations = [] }) {
+function StepList({ items, ordered = false }) {
   let orderedIndex = 0;
 
   return (
@@ -120,7 +81,8 @@ function StepList({ items, ordered = false, illustrations = [] }) {
           const isNested = item.startsWith("-");
           const isNumbered = /^\d+\.\s/.test(item);
           const isSubheading = !isNested && !isNumbered && (
-            item.endsWith(":") || /^(If the patient|If there are|If the seizure|During resuscitation|Continue CPR until|Chest compressions|Decision point)/i.test(item)
+            item.endsWith(":") || /^(If the patient|If there are|If the seizure|During resuscitation|Chest compressions|Decision point)/i.test(item)
+            || item === "Continue CPR until:"
           );
           const number = isNumbered ? item.match(/^(\d+)\./)[1] : null;
           const orderedNumber = ordered && !isNested && !isNumbered && !isSubheading
@@ -153,7 +115,6 @@ function StepList({ items, ordered = false, illustrations = [] }) {
           );
         })}
       </div>
-      <IllustrationPlaceholders labels={illustrations} />
     </>
   );
 }
@@ -168,7 +129,10 @@ function DecisionSection({ section, index }) {
   const showBothBranches = isPulseBreathingDecision(section);
 
   return (
-    <section className="eg-section eg-decision" id={getSectionId(section.question, index)}>
+    <section
+      className={`eg-section eg-decision ${showBothBranches ? "eg-decision--checkpoint" : ""}`}
+      id={getSectionId(section.question, index)}
+    >
       <div className="eg-section__heading">
         <span className="eg-section__index">{createElement(getSectionIcon(section.question), { size: 19, strokeWidth: 1.8 })}</span>
         <div>
@@ -200,7 +164,7 @@ function DecisionSection({ section, index }) {
                 <span>{branchIndex === 0 ? "YES" : "NO"}</span>
                 <h3>{branch.title}</h3>
               </div>
-              <StepList items={branch.items || []} ordered illustrations={getIllustrationLabels(branch.items || [])} />
+              <StepList items={branch.items || []} ordered />
             </article>
           ))}
         </div>
@@ -208,7 +172,7 @@ function DecisionSection({ section, index }) {
         <div className="eg-decision__branches eg-decision__branches--selected" aria-live="polite">
           <article className={`eg-branch eg-branch--${selectedBranchData.tone}`} key={selectedBranchData.title}>
             <div className="eg-branch__heading"><span>{selectedBranchData.label}</span><h3>{selectedBranchData.title}</h3></div>
-            <StepList items={selectedBranchData.items || []} ordered illustrations={getIllustrationLabels(selectedBranchData.items || [])} />
+            <StepList items={selectedBranchData.items || []} ordered />
           </article>
         </div>
       )}
@@ -216,7 +180,57 @@ function DecisionSection({ section, index }) {
   );
 }
 
-function ContentSection({ section, index, parentHeading = "" }) {
+function PathwaysSection({ section, index }) {
+  const icons = [Brain, Wind, HeartPulse];
+
+  return (
+    <section className="eg-section eg-pathway-map" id={getSectionId(section.question, index)}>
+      <div className="eg-section__heading">
+        <span className="eg-section__index">{createElement(getSectionIcon(section.question), { size: 19, strokeWidth: 1.8 })}</span>
+        <div>
+          <p className="eg-eyebrow">EMERGENCY MANAGEMENT</p>
+          <h2>{section.question}</h2>
+        </div>
+      </div>
+      <div className="eg-pathway-map__branches">
+        {section.branches.map((branch, branchIndex) => {
+          const Icon = icons[branchIndex] || Activity;
+          return (
+            <article className={`eg-pathway-card eg-pathway-card--${branchIndex + 1}`} key={branch.title}>
+              <div className="eg-pathway-card__heading">
+                <span className="eg-pathway-card__icon"><Icon size={19} /></span>
+                <h3>{branch.title}</h3>
+              </div>
+              <StepList items={branch.items} ordered />
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function isEarlySignsList(sections, index) {
+  const current = sections[index];
+  const label = sections[index - 1];
+  const heading = sections[index - 2];
+
+  return current?.kind === "list"
+    && label?.kind === "paragraph"
+    && /^(early signs|signs):?$/i.test(label.value.trim())
+    && heading?.kind === "heading"
+    && /recognis/i.test(heading.value);
+}
+
+function isEarlySignsLabel(sections, index) {
+  return sections[index]?.kind === "paragraph" && isEarlySignsList(sections, index + 1);
+}
+
+function ContentSection({ section, index, earlySignsLabel, emergencyId }) {
+  if (section.kind === "pathways") {
+    return <PathwaysSection section={section} index={index} />;
+  }
+
   if (section.kind === "decision") {
     return <DecisionSection section={section} index={index} />;
   }
@@ -237,16 +251,18 @@ function ContentSection({ section, index, parentHeading = "" }) {
   }
 
   if (section.kind === "list") {
-    const isSigns = section.items.some((item) => /^(Skin|Respiratory|Cardiovascular|Gastrointestinal):/.test(item));
-    return isSigns ? (
+    const isSigns = Boolean(earlySignsLabel)
+      || section.items.some((item) => /^(Skin|Respiratory|Cardiovascular|Gastrointestinal):/.test(item));
+    const content = isSigns ? (
       <div className="eg-sign-grid">
         {section.items.map((item) => {
           const [label, ...details] = item.split(":");
-          const Icon = signIcons[label] || Activity;
+          const hasCategory = /^(Skin|Respiratory|Cardiovascular|Gastrointestinal)/.test(label);
+          const Icon = signIcons[label] || earlySignIconsByEmergency[emergencyId] || Activity;
           return (
             <article className="eg-sign-card" key={item}>
-              <span className="eg-sign-card__icon"><Icon size={19} /></span>
-              <p><strong>{label}:</strong> {details.join(":").trim()}</p>
+              <span className="eg-sign-card__icon"><Icon size={19} aria-hidden="true" /></span>
+              <p>{hasCategory ? <><strong>{label}:</strong> {details.join(":").trim()}</> : item}</p>
             </article>
           );
         })}
@@ -255,11 +271,15 @@ function ContentSection({ section, index, parentHeading = "" }) {
       <StepList
         items={section.items}
         ordered={section.ordered}
-        illustrations={parentHeading === "Recognising the emergency" && !section.items.some((item) => /\bcpr\b|aed|position|airway|oxygen|ventilation/i.test(item))
-          ? []
-          : getIllustrationLabels(`${parentHeading} ${section.items.join(" ")}`)}
       />
     );
+
+    return earlySignsLabel ? (
+      <div className="eg-early-signs">
+        <p className="eg-early-signs__label">{earlySignsLabel}</p>
+        {content}
+      </div>
+    ) : content;
   }
 
   return null;
@@ -306,23 +326,31 @@ function EmergencyGuide() {
 
   if (!emergency) {
     return (
-      <main className="eg-not-found">
-        <ShieldAlert size={35} />
-        <h1>Emergency guide unavailable</h1>
-        <p>This emergency type is not in the current guide. Return to the emergency list and select a valid topic.</p>
-        <Link to="/emergencies"><ArrowLeft size={17} /> View all emergencies</Link>
-      </main>
+      <div className="emergency-guide">
+        <main className="eg-not-found">
+          <ShieldAlert size={35} />
+          <h1>Emergency guide unavailable</h1>
+          <p>This emergency type is not in the current guide. Return to the emergency list and select a valid topic.</p>
+          <Link to="/emergencies"><ArrowLeft size={17} /> View all emergencies</Link>
+        </main>
+        <FooterCredit />
+      </div>
     );
   }
 
-  const Icon = emergencyIcons[emergency.id] || LifeBuoy;
   const sections = getOrderedSections(emergency);
 
   return (
     <div className="emergency-guide">
       <header className="eg-topbar">
         <Link to="/emergencies" className="eg-brand"><span className="eg-brand__mark"><Activity size={20} /></span><span>MAHSA INTERNATIONAL COLLEGE<small>DENTAL EMERGENCY QUICK REFERENCE</small></span></Link>
-        <Link to="/" className="eg-home"><Home size={17} /> Home</Link>
+        <nav className="eg-topbar__actions" aria-label="Quick actions">
+          <a className="eg-emergency-call" href="tel:999" aria-label="Call emergency services at 999">
+            <PhoneCall size={17} aria-hidden="true" />
+            <span>Call 999</span>
+          </a>
+          <Link to="/" className="eg-home"><Home size={17} /> Home</Link>
+        </nav>
       </header>
 
       <main className="eg-main">
@@ -333,28 +361,46 @@ function EmergencyGuide() {
         <header className={`eg-hero eg-hero--${emergency.id}`}>
           <div className="eg-hero__copy">
             <p className="eg-eyebrow">DENTAL EMERGENCY TRAINING</p>
-            <h1>{emergency.title}<span>– Emergency Management</span></h1>
+            <h1>
+              {emergency.title}
+            </h1>
             <p className="eg-hero__introduction">{emergency.introduction}</p>
           </div>
-          <div className="eg-hero__art">
-            <span className="eg-hero__icon"><Icon size={38} strokeWidth={1.6} /></span>
-            <ImagePlaceholder label="Emergency overview" />
-          </div>
+          <figure className="eg-hero__art">
+            <img
+              className="eg-hero__photo"
+              src={emergency.image}
+              alt={emergency.imageAlt}
+              loading="eager"
+            />
+            <figcaption className="eg-hero__photo-credit">
+              {emergency.imageCredit ? (
+                <a href={emergency.imageSourceUrl} target="_blank" rel="noreferrer">
+                  {emergency.imageCredit}
+                </a>
+              ) : (
+                <a href="https://unsplash.com/license" target="_blank" rel="noreferrer">
+                  Image source: Unsplash
+                </a>
+              )}
+            </figcaption>
+          </figure>
         </header>
 
         <nav className="eg-jump-links" aria-label="Guide sections">
-          {sections.filter((section) => section.kind === "heading" || section.kind === "decision").map((section, index) => {
+          {sections.filter((section) => section.kind === "heading" || section.kind === "decision" || section.kind === "pathways").map((section, index) => {
             const label = section.kind === "heading" ? section.value : section.question;
             return <a href={`#${getSectionId(label, sections.indexOf(section))}`} key={`${label}-${index}`}>{label}<ArrowRight size={14} /></a>;
           })}
         </nav>
 
         <div className="eg-content">
-          {sections.map((section, index) => (
+          {sections.map((section, index) => isEarlySignsLabel(sections, index) ? null : (
             <ContentSection
               section={section}
               index={index}
-              parentHeading={getParentHeading(sections, index)}
+              earlySignsLabel={isEarlySignsList(sections, index) ? sections[index - 1].value : undefined}
+              emergencyId={emergency.id}
               key={`${section.kind}-${index}`}
             />
           ))}
@@ -372,6 +418,7 @@ function EmergencyGuide() {
           <Link to="/emergencies" className="eg-all-guides"><ArrowLeft size={16} /> All emergency guides</Link>
         </footer>
       </main>
+      <FooterCredit />
       {modal && <Modal type={modal} onClose={() => setModal(null)} />}
     </div>
   );
