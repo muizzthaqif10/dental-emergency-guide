@@ -906,6 +906,11 @@
   color: #352a18;
 }
 
+.emergency-guide .editorial-topbar .home-emergency-call,
+.emergency-guide .editorial-topbar .home-emergency-call:hover {
+  color: #fff;
+}
+
 .home-page .editorial-topbar .editorial-home-link:hover,
 .editorial-page .editorial-topbar .editorial-home-link:hover,
 .emergency-guide .editorial-topbar .editorial-home-link:hover,
