@@ -1204,7 +1204,12 @@
   --eg-line: #d9dee1;
   --eg-red: #b42318;
   --eg-red-light: #fff1f0;
-  background: #f4f5f6;
+  background-color: #f3f1ec;
+  background-image:
+    linear-gradient(rgb(27 34 38 / 4%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(27 34 38 / 4%) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: -1px -1px;
   color: var(--eg-ink);
 }
 
@@ -1425,7 +1430,7 @@
 }
 
 .eg-not-found {
-  background: #f4f5f6;
+  background: transparent;
 }
 
 .eg-not-found a {

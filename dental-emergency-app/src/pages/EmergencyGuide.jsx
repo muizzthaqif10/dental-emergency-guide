@@ -51,9 +51,7 @@ const sectionIcons = {
   "General emergency actions": LifeBuoy,
 };
 
-const reviewNotice =
-  "This educational guide has not been independently medically validated. Medication instructions, doses, routes and emergency-response steps should be reviewed by a qualified clinician before publication. In particular, verify the adrenaline guidance for asthma and anaphylaxis against current clinical guidelines.";
-
+const reviewNotice = "This guide is based on the provided references. Clinical procedures, medication instructions, dosages, and emergency-response steps should be verified against current clinical guidelines."
 function getEarlySignIcon(emergencyId, item) {
   if (emergencyId === "hypoglycemia") {
     return hypoglycemiaSignIcons.find(({ pattern }) => pattern.test(item))?.icon || Activity;
@@ -418,7 +416,7 @@ function EmergencyGuide() {
 
         <aside className="eg-review-card">
           <div className="eg-review-card__icon"><ShieldAlert size={21} /></div>
-          <div><h2>Important before putting this content on the website</h2><p>{reviewNotice}</p></div>
+          <div><h2>Important Medical Disclaimer</h2><p>{reviewNotice}</p></div>
           <button type="button" onClick={() => setModal("review")}>Clinical review <ArrowRight size={16} /></button>
         </aside>
 
