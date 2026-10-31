@@ -364,34 +364,38 @@ function EmergencyGuide() {
         </nav>
 
         <header className={`eg-hero eg-hero--${emergency.id}`}>
-          <div className="eg-hero__copy">
-            <p className="eg-eyebrow">DENTAL EMERGENCY TRAINING</p>
-            <h1>
-              {emergency.title}
-            </h1>
-            <p className="eg-hero__introduction">{emergency.introduction}</p>
+          <div className="eg-hero__label">
+            <p className="eg-eyebrow eg-hero__eyebrow">DENTAL EMERGENCY TRAINING</p>
           </div>
-          <figure className="eg-hero__art">
-            <img
-              className="eg-hero__photo"
-              src={emergency.image}
-              alt={emergency.imageAlt}
-              loading="eager"
-            />
-            {(emergency.imageCredit || emergency.image.startsWith("https://images.unsplash.com/")) && (
-              <figcaption className="eg-hero__photo-credit">
-                {emergency.imageCredit ? (
-                  <a href={emergency.imageSourceUrl} target="_blank" rel="noreferrer">
-                    {emergency.imageCredit}
-                  </a>
-                ) : (
-                  <a href="https://unsplash.com/license" target="_blank" rel="noreferrer">
-                    Image source: Unsplash
-                  </a>
-                )}
-              </figcaption>
-            )}
-          </figure>
+          <div className="eg-hero__body">
+            <div className="eg-hero__copy">
+              <h1>
+                {emergency.title}
+              </h1>
+              <p className="eg-hero__introduction">{emergency.introduction}</p>
+            </div>
+            <figure className="eg-hero__art">
+              <img
+                className="eg-hero__photo"
+                src={emergency.image}
+                alt={emergency.imageAlt}
+                loading="eager"
+              />
+              {(emergency.imageCredit || emergency.image.startsWith("https://images.unsplash.com/")) && (
+                <figcaption className="eg-hero__photo-credit">
+                  {emergency.imageCredit ? (
+                    <a href={emergency.imageSourceUrl} target="_blank" rel="noreferrer">
+                      {emergency.imageCredit}
+                    </a>
+                  ) : (
+                    <a href="https://unsplash.com/license" target="_blank" rel="noreferrer">
+                      Image source: Unsplash
+                    </a>
+                  )}
+                </figcaption>
+              )}
+            </figure>
+          </div>
         </header>
 
         <nav className="eg-jump-links" aria-label="Guide sections">

@@ -1,0 +1,424 @@
+.learn-page {
+  --learn-line: var(--color-border);
+  --learn-ink: var(--color-navy);
+  --learn-muted: var(--color-muted);
+  overflow-x: clip;
+}
+
+.learn-main {
+  width: min(100% - 48px, 1320px);
+  margin: 0 auto;
+  padding: 45px 0 62px;
+}
+
+.learn-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, .7fr);
+  align-items: end;
+  gap: 18px 36px;
+  margin-bottom: 27px;
+}
+
+.learn-heading .editorial-kicker {
+  grid-column: 1 / -1;
+}
+
+.learn-heading h1 {
+  margin: 0;
+  color: var(--learn-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 500;
+  line-height: 1.08;
+}
+
+.learn-heading > p:last-child {
+  max-width: 370px;
+  margin: 0 0 3px auto;
+  color: var(--learn-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.learn-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(275px, 3fr);
+  align-items: start;
+  gap: clamp(20px, 3vw, 38px);
+}
+
+.learn-current,
+.learn-playlist {
+  min-width: 0;
+}
+
+.learn-player {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--learn-line);
+  border-radius: 6px;
+  background: var(--color-navy);
+  box-shadow: 0 12px 30px rgb(17 29 74 / 10%);
+}
+
+.learn-player__video,
+.learn-player__placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.learn-player__video {
+  background: var(--color-navy);
+  object-fit: contain;
+}
+
+.learn-player__placeholder {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--color-navy);
+}
+
+.learn-player__placeholder > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .43;
+}
+
+.learn-player__placeholder::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(17 29 74 / 88%), rgb(17 29 74 / 36%));
+  content: "";
+}
+
+.learn-player__placeholder-copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 7px;
+  padding: 16px;
+  color: var(--color-cream);
+  text-align: center;
+}
+
+.learn-player__placeholder-copy svg {
+  color: var(--color-peach);
+}
+
+.learn-player__placeholder-copy strong {
+  font-size: clamp(14px, 1.7vw, 19px);
+}
+
+.learn-player__placeholder-copy span {
+  color: rgb(255 248 240 / 78%);
+  font-size: 12px;
+}
+
+.learn-player__loading {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
+  border-radius: 4px;
+  padding: 5px 8px;
+  background: var(--color-cream);
+  color: var(--learn-ink);
+  font-size: 12px;
+}
+
+.learn-current__copy {
+  padding: 20px 2px 0;
+}
+
+.learn-current__category {
+  margin: 0 0 5px;
+  color: var(--color-emergency);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.learn-current__copy h2 {
+  margin: 0;
+  color: var(--learn-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.learn-current__copy > p:last-child {
+  max-width: 760px;
+  margin: 9px 0 0;
+  color: var(--learn-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.learn-playlist {
+  border: 1px solid var(--learn-line);
+  border-radius: 6px;
+  background: rgb(255 255 255 / 32%);
+}
+
+.learn-playlist__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--learn-line);
+  padding: 16px 17px 14px;
+}
+
+.learn-playlist__heading h2 {
+  margin: 4px 0 0;
+  color: var(--learn-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.learn-playlist__heading > span {
+  color: var(--learn-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.learn-playlist__items {
+  max-height: min(620px, calc(100vh - 230px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 5px;
+}
+
+.learn-lesson {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 102px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 8px;
+  background: transparent;
+  color: var(--learn-ink);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color .18s ease, box-shadow .18s ease, transform .18s ease, border-color .18s ease;
+}
+
+.learn-lesson.is-selected {
+  border-color: var(--color-navy);
+  background: var(--color-navy);
+  box-shadow: inset 4px 0 0 var(--color-peach);
+}
+
+.learn-lesson.is-selected .learn-lesson__copy strong {
+  color: var(--color-cream);
+}
+
+.learn-lesson.is-selected .learn-lesson__copy > span {
+  color: color-mix(in srgb, var(--color-cream) 76%, transparent);
+}
+
+.learn-lesson.is-selected:hover,
+.learn-lesson.is-selected:focus-visible {
+  border-color: var(--color-navy);
+  background: var(--color-navy);
+  box-shadow:
+    inset 4px 0 0 var(--color-peach),
+    0 8px 18px color-mix(in srgb, var(--color-navy) 14%, transparent);
+}
+
+.learn-lesson__thumbnail {
+  position: relative;
+  display: grid;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  place-items: center;
+  border-radius: 3px;
+  background: var(--color-navy);
+  color: var(--color-peach);
+}
+
+.learn-lesson__thumbnail img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .66;
+}
+
+.learn-lesson__thumbnail svg {
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 1px 3px rgb(17 29 74 / 50%));
+}
+
+.learn-lesson__copy {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+}
+
+.learn-lesson__copy strong {
+  overflow-wrap: anywhere;
+  color: var(--learn-ink);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.learn-lesson__copy > span {
+  color: var(--learn-muted);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.learn-mobile-select {
+  display: none;
+}
+
+.learn-lesson:hover,
+.learn-lesson:focus-visible {
+  border-color: var(--color-emergency);
+  background: var(--color-peach);
+  box-shadow:
+    inset 3px 0 0 var(--color-emergency),
+    0 8px 18px color-mix(in srgb, var(--color-navy) 10%, transparent);
+  transform: translateY(-2px);
+}
+
+.learn-page a:focus-visible,
+.learn-page button:focus-visible,
+.learn-page select:focus-visible {
+  outline: 3px solid var(--color-navy);
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .learn-main {
+    width: min(100% - 36px, 760px);
+    padding-top: 35px;
+  }
+
+  .learn-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(250px, .68fr);
+    gap: 18px;
+  }
+
+  .learn-lesson {
+    grid-template-columns: 82px minmax(0, 1fr);
+    gap: 9px;
+    padding: 7px;
+  }
+
+}
+
+@media (max-width: 700px) {
+  .learn-main {
+    width: min(100% - 32px, 560px);
+    padding: 30px 0 44px;
+  }
+
+  .learn-heading {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .learn-heading h1 {
+    font-size: clamp(30px, 8vw, 40px);
+  }
+
+  .learn-heading > p:last-child {
+    max-width: none;
+    margin: 0;
+    font-size: 13px;
+  }
+
+  .learn-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .learn-player {
+    max-height: min(56.25vw, 340px);
+  }
+
+  .learn-current__copy {
+    padding-top: 16px;
+  }
+
+  .learn-current__copy h2 {
+    font-size: 26px;
+  }
+
+  .learn-current__copy > p:last-child {
+    margin-top: 7px;
+    font-size: 13px;
+  }
+
+  .learn-mobile-select {
+    display: grid;
+    gap: 7px;
+    margin-top: 18px;
+    color: var(--learn-ink);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .learn-mobile-select select {
+    width: 100%;
+    min-height: 48px;
+    border: 1px solid var(--learn-line);
+    border-radius: 5px;
+    padding: 0 12px;
+    background: var(--color-cream);
+    color: var(--learn-ink);
+    font-size: 14px;
+  }
+
+  .learn-playlist {
+    display: none;
+  }
+
+}
+
+@media (max-width: 560px) {
+  .learn-main {
+    width: calc(100% - 32px);
+  }
+
+  .learn-player {
+    max-height: 56.25vw;
+  }
+
+  .learn-player__placeholder-copy {
+    gap: 4px;
+  }
+
+  .learn-player__placeholder-copy svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .learn-page *,
+  .learn-page *::before,
+  .learn-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
