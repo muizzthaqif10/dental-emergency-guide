@@ -1,11 +1,18 @@
 @import "tailwindcss";
 
 :root {
+  --color-ink: #1E1E24;
+  --color-emergency: #92140C;
+  --color-cream: #FFF8F0;
+  --color-peach: #FFCF99;
+  --color-navy: #111D4A;
+  --color-muted: color-mix(in srgb, var(--color-ink) 72%, transparent);
+  --color-border: rgb(17 29 74 / 16%);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #1e2d39;
-  background: #f5f2ec;
+  color: var(--color-ink);
+  background: var(--color-cream);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -20,7 +27,7 @@ body {
   margin: 0;
   min-width: 0;
   min-height: 100vh;
-  background: #f5f2ec;
+  background: var(--color-cream);
 }
 
 .home-page,
@@ -40,9 +47,9 @@ body {
 
 .page-credit {
   margin-top: auto;
-  border-top: 1px solid rgb(105 115 111 / 14%);
+  border-top: 1px solid var(--color-border);
   padding: 10px 16px;
-  color: #87908c;
+  color: var(--color-muted);
   font-size: 10px;
   letter-spacing: .035em;
   text-align: center;
@@ -60,7 +67,7 @@ select {
 }
 
 button:focus-visible {
-  outline: 3px solid rgba(56, 123, 119, 0.55);
+  outline: 3px solid var(--color-navy);
   outline-offset: 2px;
 }
 
@@ -74,5 +81,5 @@ li {
 }
 
 ::selection {
-  background: rgba(56, 123, 119, 0.2);
+  background: rgb(255 207 153 / 70%);
 }

@@ -20,7 +20,6 @@ import Navbar from "../components/Navbar";
 import { emergencyData, references } from "../data/emergencyContent";
 import FooterCredit from "../components/FooterCredit";
 import "../styles/emergency-guide.css";
-import "../styles/guide-editorial.css";
 
 const signIcons = {
   Skin: ShieldAlert,

@@ -4,7 +4,7 @@ function VideoContainer() {
       <video
         className="home-video__video"
         src="/videos/homepage-bg.mp4"
-        aria-label="Cat video"
+        aria-label="Dental emergency overview video"
         autoPlay
         muted
         loop

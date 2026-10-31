@@ -1,7 +1,7 @@
 function FooterCredit() {
   return (
     <footer className="page-credit">
-      By NURUL ASWANI BINTI SULTAN ASWAR
+      MAHSA International College • Dental Emergency Quick Reference
     </footer>
   );
 }

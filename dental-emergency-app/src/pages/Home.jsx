@@ -1,4 +1,4 @@
-import { Activity, AlertCircle, BookOpenCheck } from "lucide-react";
+import { Activity, AlertCircle, BookOpenCheck, Toothbrush } from "lucide-react";
 
 import Navbar from "../components/Navbar";
 import EmergencyButton from "../components/EmergencyButton";
@@ -19,7 +19,10 @@ function Home() {
 
         <section className="home-hero">
           <header className="home-hero__copy">
-            <p className="editorial-kicker">DENTAL EMERGENCIES REFERENCES<span>/</span> CLINICAL LEARNING</p>
+            <p className="editorial-kicker">
+              <Toothbrush className="home-hero__tooth-icon" size={17} aria-hidden="true" />
+              DENTAL EMERGENCIES REFERENCES<span>/</span> CLINICAL LEARNING
+            </p>
             <h1>Emergency?<br /><em>Tap Here.</em></h1>
             <p className="home-hero__dek">
               A practical dental emergency quick reference for recognising an emergency and finding the next response pathway.
@@ -32,7 +35,6 @@ function Home() {
             </div>
             <figcaption className="home-plate__caption">
               <span>Fig. 01</span>
-              {/* <span className="home-plate__title">Dental emergency quick reference</span> */}
               <span>Educational use</span>
             </figcaption>
           </figure>
