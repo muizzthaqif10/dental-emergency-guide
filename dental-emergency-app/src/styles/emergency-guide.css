@@ -269,15 +269,18 @@
   background: var(--color-cream);
 }
 
-.eg-content {
-  border: 1px solid var(--eg-line);
-  padding: 4px 28px 27px;
-  background: var(--color-cream);
-}
-
 .eg-section {
   scroll-margin-top: 20px;
   margin-top: 26px;
+}
+
+.eg-guide-section {
+  margin-bottom: 24px;
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-emergency);
+  border-radius: 6px;
+  padding: clamp(12px, 2vw, 20px) clamp(12px, 2.5vw, 24px) 4px;
+  background: color-mix(in srgb, var(--color-peach) 28%, var(--color-cream));
 }
 
 .eg-section__heading {
@@ -921,10 +924,6 @@
     font-size: 13px;
   }
 
-  .eg-content {
-    padding: 2px 15px 19px;
-  }
-
   .eg-section {
     margin-top: 21px;
   }
@@ -1049,7 +1048,6 @@
 .eg-sign-card,
 .eg-branch,
 .eg-decision,
-.eg-content,
 .eg-hero,
 .eg-review-card,
 .eg-modal,
@@ -1208,12 +1206,6 @@
 
 .eg-jump-links a:hover {
   border-color: var(--color-border);
-  background: var(--color-cream);
-}
-
-.eg-content {
-  border-color: var(--color-border);
-  padding: 2px 23px 25px;
   background: var(--color-cream);
 }
 
@@ -1562,11 +1554,6 @@
     flex-basis: 32px;
   }
 
-  .eg-content {
-    padding-right: 14px;
-    padding-left: 14px;
-  }
-
   .eg-decision {
     padding: 13px;
   }
@@ -1652,10 +1639,10 @@
   max-width: none;
   margin: 42px 0 18px;
   border: 1px solid var(--color-border);
-  border-left: 4px solid var(--color-border);
+  border-left: 4px solid var(--color-emergency);
   border-radius: 9px;
   padding: clamp(18px, 2.5vw, 28px);
-  background: var(--color-cream);
+  background: color-mix(in srgb, var(--color-peach) 28%, var(--color-cream));
 }
 
 .emergency-guide .eg-decision::before {
@@ -1886,12 +1873,6 @@
     padding-bottom: 9px;
   }
 
-  .emergency-guide .eg-content {
-    padding-right: 12px;
-    padding-bottom: 16px;
-    padding-left: 12px;
-  }
-
   .emergency-guide .eg-decision__branches--selected .eg-step p {
     font-size: var(--site-type-body);
     line-height: 1.45;
@@ -1935,12 +1916,6 @@
   box-shadow:
     0 16px 36px color-mix(in srgb, var(--color-navy) 10%, transparent),
     inset 0 1px 0 color-mix(in srgb, var(--color-cream) 80%, transparent);
-}
-
-.emergency-guide .eg-content {
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  box-shadow: 0 10px 28px color-mix(in srgb, var(--color-navy) 6%, transparent);
 }
 
 .emergency-guide .eg-sign-card,
@@ -2013,11 +1988,6 @@
   .emergency-guide .eg-jump-links a svg {
     flex: 0 0 14px;
     margin-left: 5px;
-  }
-
-  .emergency-guide .eg-content {
-    border-radius: 9px;
-    box-shadow: 0 5px 16px color-mix(in srgb, var(--color-navy) 5%, transparent);
   }
 
   .emergency-guide .eg-sign-card,
@@ -2155,7 +2125,6 @@
   color: var(--color-emergency);
 }
 
-.emergency-guide .eg-content,
 .emergency-guide .eg-sign-card,
 .emergency-guide .eg-step,
 .emergency-guide .eg-branch,
@@ -2163,6 +2132,10 @@
   border-color: var(--color-border);
   background-color: var(--color-cream);
   color: var(--color-ink);
+}
+
+.emergency-guide .eg-guide-section {
+  background-color: color-mix(in srgb, var(--color-peach) 28%, var(--color-cream));
 }
 
 .emergency-guide .eg-jump-links a,
@@ -2204,13 +2177,43 @@
   color: var(--color-cream);
 }
 
+.emergency-guide .eg-review-card {
+  border: 1px solid color-mix(in srgb, var(--color-navy) 24%, var(--color-border));
+  border-left: 4px solid var(--color-navy);
+  border-radius: 6px;
+  padding: 18px 20px;
+  background: color-mix(in srgb, var(--color-peach) 24%, var(--color-cream));
+  box-shadow: 0 5px 16px color-mix(in srgb, var(--color-navy) 7%, transparent);
+}
+
+.emergency-guide .eg-review-card__icon {
+  border-radius: 4px;
+  background: var(--color-navy);
+  color: var(--color-cream);
+}
+
+.emergency-guide .eg-review-card button {
+  border-color: var(--color-navy);
+  border-radius: 6px;
+  background: var(--color-navy);
+  color: var(--color-cream);
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.emergency-guide .eg-review-card button:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--color-navy) 82%, black);
+  background: color-mix(in srgb, var(--color-navy) 82%, black);
+}
+
 .emergency-guide .eg-footer {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: center;
   gap: 12px 16px;
   min-height: 0;
-  border-top: 2px solid var(--color-border);
+  border-top: 2px solid var(--color-navy);
+  border-radius: 6px;
   margin-top: 24px;
   padding: 16px 18px;
   background: var(--color-peach);
@@ -2227,17 +2230,17 @@
 .emergency-guide .eg-footer button {
   min-width: 132px;
   min-height: 44px;
-  border-color: var(--color-border);
+  border-color: var(--color-navy);
   border-radius: 6px;
-  background: var(--color-cream);
-  color: var(--color-navy);
+  background: var(--color-navy);
+  color: var(--color-cream);
   transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
 }
 
 .emergency-guide .eg-footer button:hover {
   transform: translateY(-1px);
-  border-color: var(--color-navy);
-  background: var(--color-cream);
+  border-color: color-mix(in srgb, var(--color-navy) 82%, black);
+  background: color-mix(in srgb, var(--color-navy) 82%, black);
 }
 
 .emergency-guide .eg-footer .eg-all-guides {
@@ -2245,16 +2248,25 @@
   min-height: 44px;
   justify-content: center;
   gap: 8px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-navy);
   border-radius: 6px;
   padding: 7px 12px;
-  background: var(--color-cream);
+  background: var(--color-navy);
+  color: var(--color-cream) !important;
   transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
 }
 
 .emergency-guide .eg-footer .eg-all-guides:hover {
   transform: translateY(-1px);
-  border-color: var(--color-navy);
+  border-color: color-mix(in srgb, var(--color-navy) 82%, black);
+  background: color-mix(in srgb, var(--color-navy) 82%, black);
+}
+
+.emergency-guide .eg-review-card button:focus-visible,
+.emergency-guide .eg-footer button:focus-visible,
+.emergency-guide .eg-footer .eg-all-guides:focus-visible {
+  outline: 3px solid var(--color-cream);
+  outline-offset: 3px;
 }
 
 @media (max-width: 720px) {

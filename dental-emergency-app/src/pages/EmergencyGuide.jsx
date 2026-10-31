@@ -143,7 +143,7 @@ function DecisionSection({ section, index }) {
 
   return (
     <section
-      className={`eg-section eg-decision ${showBothBranches ? "eg-decision--checkpoint" : ""}`}
+      className={`eg-section eg-guide-section eg-decision ${showBothBranches ? "eg-decision--checkpoint" : ""}`}
       id={getSectionId(section.question, index)}
     >
       <div className="eg-section__heading">
@@ -197,7 +197,7 @@ function PathwaysSection({ section, index }) {
   const icons = [Brain, Wind, HeartPulse];
 
   return (
-    <section className="eg-section eg-pathway-map" id={getSectionId(section.question, index)}>
+    <section className="eg-section eg-guide-section eg-pathway-map" id={getSectionId(section.question, index)}>
       <div className="eg-section__heading">
         <span className="eg-section__index">{createElement(getSectionIcon(section.question), { size: 19, strokeWidth: 1.8 })}</span>
         <div>
@@ -239,6 +239,22 @@ function isEarlySignsLabel(sections, index) {
   return sections[index]?.kind === "paragraph" && isEarlySignsList(sections, index + 1);
 }
 
+function groupSectionsByJumpLink(sections) {
+  const groups = [];
+  let currentGroup = null;
+
+  sections.forEach((section, index) => {
+    const startsJumpLinkGroup = ["heading", "decision", "pathways"].includes(section.kind);
+    if (!currentGroup || startsJumpLinkGroup) {
+      currentGroup = { kind: startsJumpLinkGroup ? section.kind : "content", sections: [] };
+      groups.push(currentGroup);
+    }
+    currentGroup.sections.push({ section, index });
+  });
+
+  return groups;
+}
+
 function ContentSection({ section, index, earlySignsLabel, emergencyId }) {
   if (section.kind === "pathways") {
     return <PathwaysSection section={section} index={index} />;
@@ -250,12 +266,10 @@ function ContentSection({ section, index, earlySignsLabel, emergencyId }) {
 
   if (section.kind === "heading") {
     return (
-      <section className="eg-section" id={getSectionId(section.value, index)}>
-        <div className="eg-section__heading">
-          <span className="eg-section__index">{createElement(getSectionIcon(section.value), { size: 19, strokeWidth: 1.8 })}</span>
-          <div><p className="eg-eyebrow">EMERGENCY MANAGEMENT</p><h2>{section.value}</h2></div>
-        </div>
-      </section>
+      <div className="eg-section__heading">
+        <span className="eg-section__index">{createElement(getSectionIcon(section.value), { size: 19, strokeWidth: 1.8 })}</span>
+        <div><p className="eg-eyebrow">EMERGENCY MANAGEMENT</p><h2>{section.value}</h2></div>
+      </div>
     );
   }
 
@@ -405,8 +419,9 @@ function EmergencyGuide() {
           })}
         </nav>
 
-        <div className="eg-content">
-          {sections.map((section, index) => isEarlySignsLabel(sections, index) ? null : (
+        {groupSectionsByJumpLink(sections).map((group) => {
+          const firstSection = group.sections[0];
+          const content = group.sections.map(({ section, index }) => isEarlySignsLabel(sections, index) ? null : (
             <ContentSection
               section={section}
               index={index}
@@ -414,8 +429,20 @@ function EmergencyGuide() {
               emergencyId={emergency.id}
               key={`${section.kind}-${index}`}
             />
-          ))}
-        </div>
+          ));
+
+          if (group.kind === "decision" || group.kind === "pathways") return content;
+
+          return (
+            <section
+              className="eg-section eg-guide-section"
+              id={firstSection.section.kind === "heading" ? getSectionId(firstSection.section.value, firstSection.index) : undefined}
+              key={`guide-section-${firstSection.index}`}
+            >
+              {content}
+            </section>
+          );
+        })}
 
         <aside className="eg-review-card">
           <div className="eg-review-card__icon"><ShieldAlert size={21} /></div>
