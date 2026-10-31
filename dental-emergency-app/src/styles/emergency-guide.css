@@ -2308,3 +2308,121 @@
     justify-content: center;
   }
 }
+
+.emergency-guide .eg-decision__choice--navy {
+  border-color: var(--color-navy);
+  background: var(--color-navy);
+  color: var(--color-cream);
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.emergency-guide .eg-decision__choice--navy:hover:not(.is-selected) {
+  border-color: color-mix(in srgb, var(--color-navy) 82%, black);
+  background: color-mix(in srgb, var(--color-navy) 82%, black);
+  color: var(--color-cream);
+  box-shadow: 0 6px 14px color-mix(in srgb, var(--color-navy) 28%, transparent);
+  transform: translateY(-2px);
+}
+
+.emergency-guide .eg-decision__choice--navy.is-selected {
+  border-color: color-mix(in srgb, var(--color-navy) 82%, black);
+  background: color-mix(in srgb, var(--color-navy) 82%, black);
+  color: var(--color-cream);
+  box-shadow: 0 0 0 2px var(--color-cream), 0 0 0 4px var(--color-navy), 0 4px 10px color-mix(in srgb, var(--color-navy) 24%, transparent);
+  transform: none;
+}
+
+.emergency-guide .eg-decision__choice--red {
+  border-color: var(--color-emergency);
+  background: var(--color-emergency);
+  color: var(--color-cream);
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.emergency-guide .eg-decision__choice--red:hover:not(.is-selected) {
+  border-color: color-mix(in srgb, var(--color-emergency) 82%, black);
+  background: color-mix(in srgb, var(--color-emergency) 82%, black);
+  color: var(--color-cream);
+  box-shadow: 0 6px 14px color-mix(in srgb, var(--color-emergency) 28%, transparent);
+  transform: translateY(-2px);
+}
+
+.emergency-guide .eg-decision__choice--red.is-selected {
+  border-color: color-mix(in srgb, var(--color-emergency) 82%, black);
+  background: color-mix(in srgb, var(--color-emergency) 82%, black);
+  color: var(--color-cream);
+  box-shadow: 0 0 0 2px var(--color-cream), 0 0 0 4px var(--color-emergency), 0 4px 10px color-mix(in srgb, var(--color-emergency) 24%, transparent);
+  transform: none;
+}
+
+.emergency-guide .eg-decision__choice--navy:active:not(.is-selected),
+.emergency-guide .eg-decision__choice--red:active:not(.is-selected) {
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--color-navy) 18%, transparent);
+  transform: translateY(0);
+}
+
+.emergency-guide .eg-decision__branches--selected .eg-branch--navy,
+.emergency-guide .eg-decision__branches--always-visible .eg-branch--navy {
+  --eg-branch-color: var(--color-navy);
+  --eg-branch-soft: color-mix(in srgb, var(--color-navy) 6%, var(--color-cream));
+  border-color: var(--eg-branch-color);
+  border-top-color: var(--eg-branch-color);
+  background: var(--eg-branch-soft);
+}
+
+.emergency-guide .eg-decision__branches--selected .eg-branch--red,
+.emergency-guide .eg-decision__branches--always-visible .eg-branch--red {
+  --eg-branch-color: var(--color-emergency);
+  --eg-branch-soft: color-mix(in srgb, var(--color-emergency) 6%, var(--color-cream));
+  border-color: var(--eg-branch-color);
+  border-top-color: var(--eg-branch-color);
+  background: var(--eg-branch-soft);
+}
+
+.emergency-guide .eg-decision__branches .eg-branch--navy .eg-branch__heading {
+  border-color: color-mix(in srgb, var(--color-navy) 28%, transparent);
+}
+
+.emergency-guide .eg-decision__branches .eg-branch--red .eg-branch__heading {
+  border-color: color-mix(in srgb, var(--color-emergency) 28%, transparent);
+}
+
+.emergency-guide .eg-decision__branches .eg-branch--navy .eg-branch__heading > span,
+.emergency-guide .eg-decision__branches .eg-branch--red .eg-branch__heading > span {
+  border-color: var(--eg-branch-color);
+  background: var(--eg-branch-color);
+  color: var(--color-cream);
+}
+
+.emergency-guide .eg-decision__branches .eg-branch--navy .eg-branch__heading h3,
+.emergency-guide .eg-decision__branches .eg-branch--navy .eg-list-heading {
+  color: var(--color-navy);
+}
+
+.emergency-guide .eg-decision__branches .eg-branch--red .eg-branch__heading h3,
+.emergency-guide .eg-decision__branches .eg-branch--red .eg-list-heading {
+  color: var(--color-emergency);
+}
+
+.emergency-guide .eg-decision__branches .eg-branch--navy .eg-step,
+.emergency-guide .eg-decision__branches .eg-branch--red .eg-step {
+  border-color: color-mix(in srgb, var(--eg-branch-color) 24%, transparent);
+  border-left: 3px solid var(--eg-branch-color);
+  background: var(--eg-branch-soft);
+}
+
+.emergency-guide .eg-decision__branches .eg-branch--navy .eg-step--nested,
+.emergency-guide .eg-decision__branches .eg-branch--red .eg-step--nested {
+  border: 0;
+  border-left: 2px solid var(--eg-branch-color);
+  background: transparent;
+}
+
+.emergency-guide .eg-decision__branches .eg-branch--navy .eg-step__number,
+.emergency-guide .eg-decision__branches .eg-branch--navy .eg-step__mark,
+.emergency-guide .eg-decision__branches .eg-branch--red .eg-step__number,
+.emergency-guide .eg-decision__branches .eg-branch--red .eg-step__mark {
+  border-color: var(--eg-branch-color);
+  background: var(--eg-branch-color);
+  color: var(--color-cream);
+}

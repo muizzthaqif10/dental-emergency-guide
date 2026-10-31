@@ -135,7 +135,7 @@ function StepList({ items, ordered = false }) {
 function DecisionSection({ section, index }) {
   const [selectedBranch, setSelectedBranch] = useState(null);
   const branches = [
-    { title: section.yesTitle, items: section.yesItems, label: section.yesLabel || "YES", tone: "teal" },
+    { title: section.yesTitle, items: section.yesItems, label: section.yesLabel || "YES", tone: "navy" },
     { title: section.noTitle, items: section.noItems, label: section.noLabel || "NO", tone: "red" },
   ].filter((branch) => branch.title || branch.items?.length);
   const selectedBranchData = selectedBranch === null ? null : branches[selectedBranch];

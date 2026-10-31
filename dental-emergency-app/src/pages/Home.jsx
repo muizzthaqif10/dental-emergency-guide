@@ -27,6 +27,20 @@ function Home() {
             <p className="home-hero__dek">
               A practical dental emergency quick reference for recognising an emergency and finding the next response pathway.
             </p>
+            <picture className="home-hero__tooth-art">
+              <source
+                srcSet="/images/tooth-thinking-static.png"
+                media="(prefers-reduced-motion: reduce)"
+              />
+              <img
+                src="/images/Heart%20Love%20GIF%20by%20dental_sozai.gif"
+                alt="Animated tooth character thinking"
+                width="480"
+                height="480"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
           </header>
 
           <figure className="home-plate">
