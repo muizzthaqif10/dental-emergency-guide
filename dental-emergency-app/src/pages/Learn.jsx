@@ -76,14 +76,6 @@ function Learn() {
                 <p>{selectedGuide?.introduction ?? selectedEmergency.summary}</p>
               </div>
 
-              <label className="learn-mobile-select">
-                <span>Choose an emergency</span>
-                <select value={selectedEmergency.id} onChange={(event) => selectEmergency(event.target.value)}>
-                  {emergencies.map((emergency) => (
-                    <option key={emergency.id} value={emergency.id}>{emergency.title}</option>
-                  ))}
-                </select>
-              </label>
             </div>
 
             <aside className="learn-playlist" aria-label="Emergency lesson playlist">

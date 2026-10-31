@@ -285,10 +285,6 @@
   line-height: 1.35;
 }
 
-.learn-mobile-select {
-  display: none;
-}
-
 .learn-lesson:hover,
 .learn-lesson:focus-visible {
   border-color: var(--color-emergency);
@@ -369,28 +365,14 @@
     font-size: 13px;
   }
 
-  .learn-mobile-select {
-    display: grid;
-    gap: 7px;
-    margin-top: 18px;
-    color: var(--learn-ink);
-    font-size: 12px;
-    font-weight: 700;
-  }
-
-  .learn-mobile-select select {
-    width: 100%;
-    min-height: 48px;
-    border: 1px solid var(--learn-line);
-    border-radius: 5px;
-    padding: 0 12px;
-    background: var(--color-cream);
-    color: var(--learn-ink);
-    font-size: 14px;
-  }
-
   .learn-playlist {
-    display: none;
+    display: block;
+    margin-top: 24px;
+  }
+
+  .learn-playlist__items {
+    max-height: none;
+    overflow: visible;
   }
 
 }
