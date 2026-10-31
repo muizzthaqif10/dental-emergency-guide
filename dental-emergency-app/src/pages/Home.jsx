@@ -1,4 +1,5 @@
-import { Activity, AlertCircle, BookOpenCheck, Toothbrush } from "lucide-react";
+import { Activity, AlertCircle, BookOpenCheck, Bot, Download, Smartphone, Toothbrush } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import Navbar from "../components/Navbar";
 import EmergencyButton from "../components/EmergencyButton";
@@ -7,6 +8,23 @@ import FooterCredit from "../components/FooterCredit";
 import "../styles/editorial-pages.css";
 
 function Home() {
+  const [apkAvailable, setApkAvailable] = useState(false);
+
+  useEffect(() => {
+    fetch("/downloads/dental-emergency-guide.apk", { method: "HEAD", cache: "no-store" })
+      .then((response) => {
+        const contentType = response.headers.get("content-type")?.toLowerCase() ?? "";
+        setApkAvailable(response.ok && !contentType.includes("text/html"));
+      })
+      .catch(() => setApkAvailable(false));
+  }, []);
+
+  useEffect(() => {
+    if (window.location.hash === "#android-app") {
+      document.getElementById("android-app")?.scrollIntoView();
+    }
+  }, []);
+
   return (
     <div className="home-page">
       <Navbar />
@@ -79,6 +97,33 @@ function Home() {
               <span>This guide is intended for educational and quick reference purposes only and does not replace professional clinical judgement.</span>
             </div>
           </article>
+        </section>
+
+        <section className="home-app-download" id="android-app" aria-labelledby="home-app-download-title">
+          <div className="home-app-download__visual" aria-hidden="true">
+            <div className="home-app-download__device">
+              <Smartphone className="home-app-download__phone" size={108} strokeWidth={1.35} />
+              <span className="home-app-download__app-icon"><Activity size={20} /></span>
+              <span className="home-app-download__android-mark"><Bot size={34} strokeWidth={1.8} /></span>
+            </div>
+          </div>
+          <div className="home-app-download__copy">
+            <p className="editorial-kicker">ANDROID APP <span>/</span> QUICK ACCESS</p>
+            <h2 id="home-app-download-title">Get the Android App</h2>
+            <p>
+              Keep the dental emergency guide close at hand on your Android device for quick access to response pathways when you need them.
+            </p>
+          </div>
+          <div className="home-app-download__action">
+            {apkAvailable ? (
+              <a className="home-app-download__button" href="/downloads/dental-emergency-guide.apk" download="dental-emergency-guide.apk">
+                <Download size={18} aria-hidden="true" /> Download for Android
+              </a>
+            ) : (
+              <p className="home-app-download__unavailable" role="status">Android app download is not currently available.</p>
+            )}
+            <span className="home-app-download__file">APK file <span aria-hidden="true">·</span> Android installer</span>
+          </div>
         </section>
       </main>
       <FooterCredit />

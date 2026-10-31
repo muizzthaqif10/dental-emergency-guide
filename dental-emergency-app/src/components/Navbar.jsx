@@ -1,4 +1,4 @@
-import { BookOpen, GraduationCap, House, Menu, PhoneCall, X } from "lucide-react";
+import { BookOpen, Download, GraduationCap, House, Menu, PhoneCall, X } from "lucide-react";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
@@ -18,6 +18,9 @@ function Navbar() {
       <NavLink to="/learn" className="editorial-home-link editorial-nav-link" onClick={() => setIsMenuOpen(false)}>
         <GraduationCap size={16} aria-hidden="true" /> Learn
       </NavLink>
+      <a className="editorial-home-link editorial-app-link" href="/#android-app" onClick={() => setIsMenuOpen(false)}>
+        <Download size={16} aria-hidden="true" /> Get the App
+      </a>
       <a className="home-emergency-call" href="tel:999" aria-label="Call emergency services at 999">
         <PhoneCall size={16} aria-hidden="true" />
         <span>Call 999</span>
